@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rust To-do (WASM)</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      margin: 0;
+    }
+    .app { width: 100%; max-width: 420px; }
+    h1 { color: #f38ba8; }
+    .input-row { display: flex; gap: 0.5rem; }
+    input {
+      flex: 1;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #45475a;
+      background: #313244;
+      color: inherit;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #89b4fa;
+      color: #11111b;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #b4befe; }
+    ul { list-style: none; padding: 0; margin-top: 1.2rem; }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.4rem;
+      background: #313244;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    li.done span { text-decoration: line-through; opacity: 0.5; }
+    li .delete {
+      background: transparent;
+      color: #f38ba8;
+      padding: 0 0.4rem;
+      font-size: 1rem;
+    }
+    #count { margin-top: 1rem; opacity: 0.7; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>🦀 Rust To-do</h1>
+    <div class="input-row">
+      <input id="new-todo" placeholder="Neue Aufgabe… (Enter)" autofocus />
+      <button id="add-btn">Hinzufügen</button>
+    </div>
+    <ul id="todo-list"></ul>
+    <p id="count"></p>
+    <p style="opacity:.5;font-size:.8rem">Klick = erledigt • ✕ = löschen • gespeichert in localStorage</p>
+  </div>
+  <script type="module">
+    import init from './pkg/rust_todo.js';
+    await init();
+  </script>
+</body>
+</html>
